@@ -26,7 +26,7 @@ SECRET_KEY = '22k52i52!^nqk_ogvj4rcnu=wb&q@ah8o(yq75cwn7^8#sqgcw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://sp-price-tracker.herokuapp.com/', 'http://127.0.0.1:8000/']
 
 
 # Application definition
