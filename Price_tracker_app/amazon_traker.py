@@ -14,6 +14,7 @@ class AmazonAPI:
         options = self.get_web_driver_options()
         self.set_ignore_certificate_error(options)
         self.set_browser_as_incognito(options)
+        self.set_browser_options(options)
         self.driver = self.get_chrome_web_driver(options)
         try:
             self.price_filters = f'&rh=p_36%3A{filters[0]}00-{filters[1]}00'
@@ -21,7 +22,11 @@ class AmazonAPI:
             self.price_filters = f'&rh=p_36%3A{filters[0]}00-'
 
     def get_chrome_web_driver(self, options):
-        return webdriver.Chrome(executable_path='Price_tracker_app/chromedriver.exe', chrome_options=options)
+        GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+        CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+        options.binary_location = GOOGLE_CHROME_PATH
+        return webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=options)
+        #return webdriver.Chrome(executable_path='Price_tracker_app/chromedriver.exe', chrome_options=options)
 
     def get_web_driver_options(self):
         return webdriver.ChromeOptions()
@@ -31,6 +36,11 @@ class AmazonAPI:
 
     def set_browser_as_incognito(self, options):
         options.add_argument('--incognito')
+
+    def set_browser_options(self, options):        
+        options.add_argument("--headless")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--no-sandbox")
 
     def run(self):
         print(f'Buscando {self.search_term}...')
