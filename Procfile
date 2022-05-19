@@ -1,0 +1,1 @@
+web: gunicorn Price_tracker.wsgi --log-file -

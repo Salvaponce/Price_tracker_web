@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block title %}History{% endblock %} {% load static %}
+{%block content%}
+<form action="/history/" method="post">
+  {% csrf_token %} 
+<ul class="list-group">
+  {% for report in report_list %}
+  <li class=" list-group-item justify-content-center" name>
+    <div class="container">
+        <div class="row justify-content-md-center">
+        <div class="row">
+    <div class="col">
+      <p>{{report.title}}</p>
+    </div>
+    <div class="col-md-auto">
+      
+    </div>
+    <div class="col col-lg-2">
+      <div class="text-end">
+          <a href="">
+            <button type="submit" value={{report.id}} name="report_name" class="btn btn-outline-dark me-2">Ver</button>
+          </a>
+          <a href="">
+          <button type="submit" value={{report.id}} name="delete" class="btn btn-warning">Eliminar</button>
+        </a>
+        </div>
+    </div>
+  </div>
+</div></li>
+{% endfor %}
+</ul>
+</form>
+{% endblock %}

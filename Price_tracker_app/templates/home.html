@@ -1,0 +1,81 @@
+{% extends "base.html" %} {% block title %}Price_tracker{% endblock %} {% load static %}
+{%block content%}
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <h2>Formulario de busqueda</h2>
+      <p class="lead"
+        >Rellene el formulario para empezar su busqueda.</p
+      >
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Datos</h4>
+        
+        <form action="/results/" method="post" class="needs-validation" novalidate>
+          {% csrf_token %}  
+          <div class="row g-3">
+            <div class="col-sm-7">
+              <label for="firstName" class="form-label">Nombre del producto</label>
+              <input
+                type="text"
+                class="form-control"
+                id="productName"
+                name="productName"
+                placeholder=""
+                value=""
+                required
+              />
+              <div class="invalid-feedback">Se necesita un nombre del producto valido.</div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="country" class="form-label"
+                >Rango del precio<span class="text-muted"> (Opcional)</span></label
+              >
+              <select class="form-select" name = "filter" id="filter">
+                <option value="">Elige...</option>
+                <option>0 - 5 EUR</option>
+                <option>5 - 10 EUR</option>
+                <option>10 - 20 EUR</option>
+                <option>20 - 50 EUR</option>
+                <option>50 - 100 EUR</option>
+                <option>Mas de 100 EUR</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label for="number" class="form-label"
+                >Numero de productos</label
+              >
+              <select class="form-select" name = "number" id="number" required>
+                <option value="">Elige...</option>
+                <option>5</option>
+                <option>10</option>
+                <option>15</option>
+                <option>20</option>
+              </select>
+              <div class="invalid-feedback">
+                Se necesita un numero de productos valido.
+              </div>
+            </div>
+
+            
+
+          <hr class="my-4" />
+
+          <button class="w-100 btn btn-primary btn-lg" type="submit"
+            >Empezar</button
+          >
+        </form>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="/static/script/form-validation.js"></script>
+>{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %} {% block title %}Feedback{% endblock %} {% load static %}
+{%block content%}
+<style>
+    .myheight {
+     height: 200px;
+    }
+</style>
+  
+}
+<main>
+    <div class="py-5 text-center">
+      <h2>Contat us</h2>
+    </div>
+  <div class="container">
+    <div class="row mb-2">
+      <div class="col-6 themed-grid-col">          
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="content">
+        <div class="section-inner clearfix">  
+            <form action="" method="post">
+                {% csrf_token %}
+
+                <div class="form-floating col-sm-8">        
+                <input type="text" class="form-control" id="floatingInput" placeholder="name" name=name required>
+                <label for="floatingInput"> Nombre</label>
+                </div>
+
+                <div class="form-floating col-sm-8">        
+                <input type="text" class="form-control" id="floatingInput" placeholder="email" name=email required>
+                <label for="floatingInput">Email</label>
+                </div>
+
+                <div class="form-floating col-sm-8">        
+                <input type="text" class="form-control" id="floatingInput" placeholder="subject" name=subject required>
+                <label for="floatingInput">Asunto</label>
+                </div>
+
+                <div class="form-floating col-sm-8" > 
+                    <textarea class="form-control" name=message placeholder="message" id="floatingInput" cols="50" rows="10" style="height: 120px;" required></textarea><label for="floatingInput">Mensaje</label>       
+                </div>
+                <br/>
+                <button class="col-sm-8 btn btn-primary " type="submit">Enviar</button>
+            </form>
+            </div>
+        </div>
+      </div>
+
+        
+      <div class="col-6 themed-grid-col">
+        <h4>Si necesitas contactarme para hacer una consulta o simplemente quieres dejarme algún comentario, por favor sientete libre de hacerlo</h4>
+        <br/>
+        <h5><a href="https://github.com/Salvaponce">Github</a></h5>
+        <br/>
+        <h5><a href="https://linkedin.com/in/salva-ponce-0b65b716b">Linkedin</a></h5>
+      </div>
+    </div>
+
+
+    {%endblock%}

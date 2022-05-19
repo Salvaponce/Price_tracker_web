@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+      body{
+        background-color: aquamarine;
+      }
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <link href="headers.css" rel="stylesheet" />
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Price Tracker</title>
+  
+  {%load bootstrap5%} {% bootstrap_css %} {% bootstrap_javascript %}
+  <header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+        >
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+            <use xlink:href="#bootstrap" />
+          </svg>
+        </a>
+        
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+          {%if user.is_authenticated%}
+          <li><a href="/history" class="nav-link px-2 text-white">Historial</a></li>
+          {% endif %}
+          <li><a href="/feedback" class="nav-link px-2 text-white">Contacto</a></li>
+        </ul>
+
+        <div class="text-end">
+          {% if user.is_authenticated %}
+            <p style="margin-right: 10px">Bienvenido {{user}}
+              <a href="/logout">
+              <button type="button" class="btn btn-warning">Salir</button></a> 
+            </p>
+          {% else %}
+          <a href="/log_in">
+            <button type="button" class="btn btn-outline-light me-2">Entrar</button>
+          </a>
+          <a href="/sign_up">
+          <button type="button" class="btn btn-warning">Registrarse</button>
+        </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </header>
+  </head>
+  <body
+    >{% block content %} {% endblock %}</body
+  >
+</html>
