@@ -1,7 +1,7 @@
+import os
 import re
 import time
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
 
 class AmazonAPI:
@@ -24,7 +24,8 @@ class AmazonAPI:
     def get_chrome_web_driver(self, options):
         GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
         CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-        options.binary_location = GOOGLE_CHROME_PATH
+        options.binary_location = os.environ.get("GOOGLE_CHROME_PATH")
+        #options.binary_location = GOOGLE_CHROME_PATH
         return webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=options)
         #return webdriver.Chrome(executable_path='Price_tracker_app/chromedriver.exe', chrome_options=options)
 
