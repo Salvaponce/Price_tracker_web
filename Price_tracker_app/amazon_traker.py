@@ -47,7 +47,7 @@ class AmazonAPI:
     def run(self):
         print(f'Buscando {self.search_term}...')
         links = self.get_products_links()
-        time.sleep(8)
+        #time.sleep(8)
         if not links:
             print('Parar Script')
             return
@@ -64,19 +64,19 @@ class AmazonAPI:
         element = self.driver.find_element_by_id("twotabsearchtextbox")
         element.send_keys(self.search_term)
         element.send_keys(Keys.ENTER)
-        time.sleep(2)
+        #time.sleep(2)
         print(self.filters)
         try:
             if self.filters[1] != '0':
                 self.driver.get(f'{self.driver.current_url}{self.price_filters}')
-                time.sleep(2)
+                #time.sleep(2)
         except:
             self.driver.get(f'{self.driver.current_url}{self.price_filters}')
-            time.sleep(2)
-        result_list = self.driver.find_elements_by_class_name('s-underline-link-text')
+            #time.sleep(2)
+        result_link_list = self.driver.find_elements_by_class_name('s-underline-link-text')
         links = []       
         try:
-            links = set([link.get_attribute('href') for link in result_list])
+            links = set([link.get_attribute('href') for link in result_link_list])
             return links
         except Exception as e:
             print('SIN PRODUCTOS')
