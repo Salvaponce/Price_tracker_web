@@ -26,7 +26,7 @@ class AmazonAPI:
         CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
         options.binary_location = os.environ.get("GOOGLE_CHROME_PATH")
         #options.binary_location = GOOGLE_CHROME_PATH
-        return webdriver.Chrome(executable_path='CHROMEDRIVER_PATH', chrome_options=options)
+        return webdriver.Chrome(executable_path=str(os.environ.get('CHROMEDRIVER_PATH')), chrome_options=options)
         #return webdriver.Chrome(executable_path='Price_tracker_app/chromedriver.exe', chrome_options=options)
 
     def get_web_driver_options(self):
