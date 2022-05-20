@@ -12,8 +12,6 @@ class AmazonAPI:
         self.number = number
         self.filters = filters
         options = self.get_web_driver_options()
-        self.set_ignore_certificate_error(options)
-        self.set_browser_as_incognito(options)
         self.set_browser_options(options)
         self.driver = self.get_chrome_web_driver(options)
         try:
@@ -32,18 +30,14 @@ class AmazonAPI:
     def get_web_driver_options(self):
         return webdriver.ChromeOptions()
 
-    def set_ignore_certificate_error(self, options):
-        options.add_argument('--ignore-certificate-errors')
-
-    def set_browser_as_incognito(self, options):
-        options.add_argument('--incognito')
-
-    def set_browser_options(self, options):        
+    def set_browser_options(self, options): 
+        #options.add_argument('--ignore-certificate-errors')  
+        #options.add_argument('--incognito')     
         options.add_argument("--headless")        
         options.headless = True
         options.add_argument("window-size=1400,800")
         options.add_argument('--disable-gpu')
-        #options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
 
     def run(self):
