@@ -2,6 +2,7 @@ import os
 import re
 import time
 from selenium.webdriver.common.keys import Keys
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 
 class AmazonAPI:
@@ -13,6 +14,7 @@ class AmazonAPI:
         self.filters = filters
         options = self.get_web_driver_options()
         self.set_browser_options(options)
+        self.driver = webdriver.Chrome(ChromeDriverManager().install())
         self.driver = self.get_chrome_web_driver(options)
         try:
             self.price_filters = f'&rh=p_36%3A{filters[0]}00-{filters[1]}00'
@@ -57,6 +59,7 @@ class AmazonAPI:
     # Buscamos los links del producto que buscamos entre los precios que hemos elegido en amazon_config    
     def get_products_links(self):
         self.driver.get(self.base_url)
+        self.driver.execute_script("window.open('');")
         element = self.driver.find_element_by_id("twotabsearchtextbox")
         element.send_keys(self.search_term)
         element.send_keys(Keys.ENTER)
