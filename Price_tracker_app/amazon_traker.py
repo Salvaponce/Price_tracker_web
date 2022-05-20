@@ -59,14 +59,6 @@ class AmazonAPI:
     # Buscamos los links del producto que buscamos entre los precios que hemos elegido en amazon_config    
     def get_products_links(self):
         self.driver.get(self.base_url)
-        self.driver.execute_script('''window.open("about:blank");''')  
-        self.driver.switch_to.window(self.driver.window_handles[1]) 
-        self.driver.get("https://devenum.com/")
-        self.driver.close()
-        self.driver.execute_script("window.open('');")
-        time.sleep(2)
-        self.driver.switch_to.window(self.driver.window_handles[1])
-        self.driver.get("https://duckduckgo.com")
         time.sleep(2)
         element = self.driver.find_element_by_id("twotabsearchtextbox")
         element.send_keys(self.search_term)
