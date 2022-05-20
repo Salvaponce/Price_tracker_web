@@ -29,6 +29,7 @@ def results(request):
         data = amazon.run()
         if str(request.user) != 'AnonymousUser':
             save_data(name, data, request.user)
+        print('all ok')
         return render(request, 'results.html', {'data':data})
     return render(request, 'home.html')
 
