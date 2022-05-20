@@ -47,7 +47,7 @@ class AmazonAPI:
     def run(self):
         print(f'Buscando {self.search_term}...')
         links = self.get_products_links()
-        #time.sleep(8)
+        time.sleep(8)
         if not links:
             print('Parar Script')
             return
