@@ -44,7 +44,7 @@ class AmazonAPI:
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
 
-    @background(schedule=timezone.now())
+    @background(schedule=0)
     def run(self):
         print(f'Buscando {self.search_term}...')
         links = self.get_products_links()
