@@ -3,7 +3,7 @@ from datetime import datetime
 import re
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.contrib import messages
 
 from Price_tracker_app.amazon_traker import AmazonAPI

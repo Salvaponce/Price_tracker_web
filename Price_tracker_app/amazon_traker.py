@@ -39,15 +39,17 @@ class AmazonAPI:
         options.add_argument('--incognito')
 
     def set_browser_options(self, options):        
-        options.add_argument("--headless")
-        options.add_argument('--disable-gpu')
+        options.add_argument("--headless")        
+        options.headless = True
+        options.add_argument("window-size=1400,800")
+        #options.add_argument('--disable-gpu')
         options.add_argument("--disable-dev-shm-usage")
-        #options.add_argument("--no-sandbox")
+        options.add_argument("--no-sandbox")
 
     def run(self):
         print(f'Buscando {self.search_term}...')
         links = self.get_products_links()
-        time.sleep(8)
+        #time.sleep(8)
         if not links:
             print('Parar Script')
             return
