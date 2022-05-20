@@ -1,9 +1,11 @@
+from datetime import timezone
 import os
 import re
 import time
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
+from background_task import background
 
 class AmazonAPI:
     def __init__(self, search_term, filters, base_url, currency, number):
@@ -42,6 +44,7 @@ class AmazonAPI:
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
 
+    @background(schedule=timezone.now())
     def run(self):
         print(f'Buscando {self.search_term}...')
         links = self.get_products_links()
