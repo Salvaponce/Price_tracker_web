@@ -1,6 +1,7 @@
 import ast
 from datetime import datetime
 import re
+import time
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render
@@ -22,11 +23,11 @@ def results(request):
             filter = re.findall(r'[0-9]+', filter)
         else:
             filter = ['0','0']
-        print(name, filter, int(number))
         base_url = 'https://www.amazon.es/'
         currency = '€'
         amazon = AmazonAPI(name, filter, base_url, currency, int(number))
         data = amazon.run()
+        time.sleep(50)
         if str(request.user) != 'AnonymousUser':
             save_data(name, data, request.user)
         print('all ok')
@@ -70,8 +71,6 @@ def signup_view(request):
                 return render(request, 'home.html')
     else:
         form = UserCreationForm()
-        for u in form:
-            print(u.field.label)
     return render(request, 'signup.html', {'form': form})
 
 

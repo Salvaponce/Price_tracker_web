@@ -3,9 +3,7 @@ import os
 import re
 import time
 from selenium.webdriver.common.keys import Keys
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
-from background_task import background
 
 class AmazonAPI:
     def __init__(self, search_term, filters, base_url, currency, number):
@@ -16,7 +14,6 @@ class AmazonAPI:
         self.filters = filters
         options = self.get_web_driver_options()
         self.set_browser_options(options)
-        self.driver = webdriver.Chrome(ChromeDriverManager().install())
         self.driver = self.get_chrome_web_driver(options)
         try:
             self.price_filters = f'&rh=p_36%3A{filters[0]}00-{filters[1]}00'
@@ -44,7 +41,6 @@ class AmazonAPI:
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
 
-    @background(schedule=0)
     def run(self):
         print(f'Buscando {self.search_term}...')
         links = self.get_products_links()
