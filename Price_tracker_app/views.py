@@ -27,7 +27,6 @@ def results(request):
         currency = '€'
         amazon = AmazonAPI(name, filter, base_url, currency, int(number))
         data = amazon.run()
-        time.sleep(50)
         if str(request.user) != 'AnonymousUser':
             save_data(name, data, request.user)
         print('all ok')

@@ -23,28 +23,28 @@ class AmazonAPI:
     def get_chrome_web_driver(self, options):
         GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
         CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-        options.binary_location = os.environ.get("GOOGLE_CHROME_PATH")
+        #options.binary_location = os.environ.get("GOOGLE_CHROME_PATH")
         #options.binary_location = GOOGLE_CHROME_PATH
-        return webdriver.Chrome(executable_path=str(os.environ.get('CHROMEDRIVER_PATH')), chrome_options=options)
-        #return webdriver.Chrome(executable_path='Price_tracker_app/chromedriver.exe', chrome_options=options)
+        #return webdriver.Chrome(executable_path=str(os.environ.get('CHROMEDRIVER_PATH')), chrome_options=options)
+        return webdriver.Chrome(executable_path='Price_tracker_app/chromedriver.exe', chrome_options=options)
 
     def get_web_driver_options(self):
         return webdriver.ChromeOptions()
 
     def set_browser_options(self, options): 
-        #options.add_argument('--ignore-certificate-errors')  
-        #options.add_argument('--incognito')     
-        options.add_argument("--headless")        
+        options.add_argument('--ignore-certificate-errors')  
+        options.add_argument('--incognito')     
+        """options.add_argument("--headless")        
         options.headless = True
         options.add_argument("window-size=1400,800")
         options.add_argument('--disable-gpu')
         options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--no-sandbox")
+        options.add_argument("--no-sandbox")"""
 
     def run(self):
         print(f'Buscando {self.search_term}...')
         links = self.get_products_links()
-        #time.sleep(8)
+        time.sleep(8)
         if not links:
             print('Parar Script')
             return
@@ -62,15 +62,15 @@ class AmazonAPI:
         element = self.driver.find_element_by_id("twotabsearchtextbox")
         element.send_keys(self.search_term)
         element.send_keys(Keys.ENTER)
-        #time.sleep(2)
+        time.sleep(2)
         print(self.filters)
         try:
             if self.filters[1] != '0':
                 self.driver.get(f'{self.driver.current_url}{self.price_filters}')
-                #time.sleep(2)
+                time.sleep(2)
         except:
             self.driver.get(f'{self.driver.current_url}{self.price_filters}')
-            #time.sleep(2)
+            time.sleep(2)
         result_link_list = self.driver.find_elements_by_class_name('s-underline-link-text')
         links = []       
         try:
